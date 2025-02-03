@@ -13,14 +13,14 @@ FROM alpine:3
 
 # Standard-Umgebungsvariablen (können zur Laufzeit überschrieben werden)
 ENV PB_PORT=8090 \
-    PB_DATA_DIR="/data/pb_data" \
-    PB_PUBLIC_DIR="/data/pb_public" \
-    PB_HOOKS_DIR="/data/pb_hooks" \
-    PB_MIGRATIONS_DIR="/data/pb_migrations" \
+    PB_DATA_DIR="/data/pocketbase" \
+    PB_PUBLIC_DIR="/data/pocketbase/public" \
+    PB_HOOKS_DIR="/data/pocketbase/hooks" \
+    PB_MIGRATIONS_DIR="/data/pocketbase/migrations" \
     DEV_MODE="false" \
     FTP_USER="ftpuser" \
     FTP_PASS="ftppass" \
-    FTP_HOME="/"
+    FTP_HOME="/ftp/ftpuser"
 
 # Notwendige Pakete installieren
 RUN apk update && apk add --no-cache \
@@ -47,7 +47,7 @@ RUN chmod +x /entrypoint.sh
 COPY supervisor.conf /etc/supervisor.conf
 
 # Ports freigeben:
-# - PocketBase (z. B. 8090)
+# - PocketBase (z. B. PB_PORT, hier 8090)
 # - FTP: Port 21 sowie der Passive-Portbereich (hier 30000-30009)
 EXPOSE ${PB_PORT} 21 30000-30009
 

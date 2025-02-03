@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-# Setze ggf. das Log-Level (wird hier nicht als Flag an PocketBase übergeben,
-# aber du kannst es später in deinem Script für weitere Zwecke nutzen)
+# Setze ggf. das Log-Level (dieser Wert wird hier nicht als Parameter übergeben,
+# kann aber für interne Zwecke verwendet werden)
 if [ "$DEV_MODE" = "true" ]; then
     export PB_LOG_LEVEL=debug
 else
